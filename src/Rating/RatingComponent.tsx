@@ -8,7 +8,7 @@ type IconOption = {
 
 const getIconOption = (rating: number): IconOption | null => {
     if (isNaN(rating) || rating < 1) {
-        return null // Return null if rating is NaN or less than 1
+        return null
     } else if (rating >= 1 && rating <= 49) {
         return iconOptions[0]
     } else if (rating >= 50 && rating <= 149) {
@@ -116,7 +116,10 @@ const RatingComponent: React.FC = () => {
     const [rating, setRating] = useState<string>('1')
 
     const handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newRating = event.target.value.replace(/[^0-9.]/g, '') // Allow only digits and dot
+        let newRating = event.target.value.replace(/[^0-9.]/g, '')
+
+        newRating = newRating.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
         setRating(newRating)
     }
 
@@ -124,13 +127,9 @@ const RatingComponent: React.FC = () => {
         setRating('')
     }
 
-    const formattedRating = isNaN(parseFloat(rating))
-        ? ''
-        : parseFloat(rating).toLocaleString('en-US', {
-              maximumFractionDigits: 3,
-          })
-
-    const selectedIcon = getIconOption(parseFloat(rating) || 0) // Added || 0 to handle NaN
+    const selectedIcon = getIconOption(
+        parseFloat(rating.replace(/,/g, '')) || 0
+    )
 
     return (
         <div>
@@ -139,7 +138,7 @@ const RatingComponent: React.FC = () => {
                 type="text"
                 pattern="\d*"
                 inputMode="numeric"
-                value={formattedRating}
+                value={rating}
                 onChange={handleRatingChange}
             />
             <button onClick={resetRating}>Reset</button>
