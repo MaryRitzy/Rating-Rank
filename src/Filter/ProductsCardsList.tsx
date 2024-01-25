@@ -20,7 +20,15 @@ const ProductsCardsList = () => {
     const [filters, setFilters] = useState({
         keywordSearch: '',
         language: 'EN-UA',
-        languageTypes: ['Business', 'For Kids', 'Special Purpose'],
+        languageTypes: [
+            'Business',
+            'For Kids',
+            'Special Purpose',
+            'General',
+            'Legal',
+            'Teenager',
+            'Medical',
+        ],
         categories: ['Загальний словник', 'Словник ігор', 'Ігри'],
         levels: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'],
         media: ['Відео', 'Аудіо', 'Фото'],
@@ -29,18 +37,21 @@ const ProductsCardsList = () => {
 
     const filteredGoods = GoodsArray.filter((goods: Goods) => {
         const keywordSearch = filters.keywordSearch
-            ? goods.Keywords.toLowerCase().includes(
-                  filters.keywordSearch.toLowerCase()
-              )
+            ? goods.Keywords.includes(filters.keywordSearch.toLowerCase())
             : true
 
         return (
-            keywordSearch ||
-            filters.categories.includes(goods.category) ||
-            filters.languageTypes.includes(goods.Language_type) ||
-            filters.levels.some((level) => goods.level.includes(level)) ||
-            filters.media.includes(goods.media) ||
-            (goods.age >= filters.age[0] && goods.age <= filters.age[1])
+            keywordSearch &&
+            (filters.categories.includes(goods.category) ||
+                filters.categories.length === 0) &&
+            (filters.languageTypes.includes(goods.Language_type) ||
+                filters.languageTypes.length === 0) &&
+            (filters.levels.some((level) => goods.level.includes(level)) ||
+                filters.levels.length === 0) &&
+            (filters.media.includes(goods.media) ||
+                filters.media.length === 0) &&
+            goods.age >= filters.age[0] &&
+            goods.age <= filters.age[1]
         )
     })
 
@@ -81,40 +92,46 @@ const ProductsCardsList = () => {
                         <Typography variant="h6" gutterBottom>
                             Типи мови:
                         </Typography>
-                        {['Business', 'For Kids', 'Special Purpose'].map(
-                            (type) => (
-                                <FormControlLabel
-                                    key={type}
-                                    control={
-                                        <Checkbox
-                                            checked={filters.languageTypes.includes(
-                                                type
-                                            )}
-                                            onChange={() =>
-                                                handleFilterChange(
-                                                    'languageTypes',
-                                                    filters.languageTypes.includes(
-                                                        type
-                                                    )
-                                                        ? filters.languageTypes.filter(
-                                                              (t) => t !== type
-                                                          )
-                                                        : [
-                                                              ...filters.languageTypes,
-                                                              type,
-                                                          ]
+                        {[
+                            'Business',
+                            'For Kids',
+                            'Special Purpose',
+                            'General',
+                            'Legal',
+                            'Teenager',
+                            'Medical',
+                        ].map((type) => (
+                            <FormControlLabel
+                                key={type}
+                                control={
+                                    <Checkbox
+                                        checked={filters.languageTypes.includes(
+                                            type
+                                        )}
+                                        onChange={() =>
+                                            handleFilterChange(
+                                                'languageTypes',
+                                                filters.languageTypes.includes(
+                                                    type
                                                 )
-                                            }
-                                        />
-                                    }
-                                    label={
-                                        <Typography variant="subtitle2">
-                                            {type}
-                                        </Typography>
-                                    }
-                                />
-                            )
-                        )}
+                                                    ? filters.languageTypes.filter(
+                                                          (t) => t !== type
+                                                      )
+                                                    : [
+                                                          ...filters.languageTypes,
+                                                          type,
+                                                      ]
+                                            )
+                                        }
+                                    />
+                                }
+                                label={
+                                    <Typography variant="subtitle2">
+                                        {type}
+                                    </Typography>
+                                }
+                            />
+                        ))}
                     </Box>
                     <Box
                         style={{

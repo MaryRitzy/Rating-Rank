@@ -1,18 +1,11 @@
-import {
-    Box,
-    Card,
-    CardContent,
-    CardMedia,
-    Typography,
-    Button,
-} from '@mui/material'
+import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material'
 
 type Goods = {
     id: number
     article: number
     title: string
     language: string
-    Keywords: string
+    Keywords: string[]
     Language_type: string
     category: string
     level: string
@@ -48,7 +41,7 @@ const ProductsCardItem = ({
                 gap: 2,
             }}
         >
-            {/* first column */}
+            {/* Перша колонка */}
             <CardMedia
                 component="img"
                 alt="Product Image"
@@ -67,7 +60,7 @@ const ProductsCardItem = ({
                 }}
                 image={image}
             />
-            {/* second column */}
+            {/* Друга колонка */}
             <CardContent
                 sx={{
                     gridColumn: '2 / 3',
@@ -77,6 +70,12 @@ const ProductsCardItem = ({
             >
                 <Typography variant="h6" gutterBottom>
                     {title}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" paragraph>
+                    Мова: {language}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" paragraph>
+                    Ключові слова: {Keywords}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" paragraph>
                     Тип мови: {Language_type}
@@ -93,14 +92,14 @@ const ProductsCardItem = ({
                 <Typography variant="body2" color="textSecondary" paragraph>
                     Медіа:{' '}
                     <span>
-                        <input type="checkbox" /> Відео{' '}
-                        <input type="checkbox" /> Аудіо{' '}
-                        <input type="checkbox" /> Фото
+                        <input type="checkbox" defaultChecked /> Відео{' '}
+                        <input type="checkbox" defaultChecked /> Аудіо{' '}
+                        <input type="checkbox" defaultChecked /> Фото
                     </span>
                 </Typography>
             </CardContent>
 
-            {/* third column */}
+            {/* Третя колонка */}
             <CardContent
                 sx={{
                     gridColumn: '3 / 4',
@@ -108,7 +107,7 @@ const ProductsCardItem = ({
                     backgroundColor: 'rgba(255,255,255,0.7)',
                 }}
             >
-                <Box
+                <div
                     style={{
                         display: 'flex',
                         justifyContent: 'space-between',
@@ -121,7 +120,7 @@ const ProductsCardItem = ({
                     <Typography variant="body1" color="textPrimary">
                         Ціна: {price}
                     </Typography>
-                </Box>
+                </div>
                 <Typography variant="body2" color="textSecondary">
                     Артикул: {article}
                 </Typography>
@@ -130,7 +129,7 @@ const ProductsCardItem = ({
                 </Typography>
             </CardContent>
 
-            {/* description below */}
+            {/* Опис внизу */}
             <CardContent
                 sx={{
                     gridColumn: '1 / 4',
