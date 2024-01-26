@@ -71,11 +71,13 @@ const ProductsCardsList = () => {
                 maxWidth="lg"
                 spacing={4}
                 sx={{
+                    display: 'grid',
+                    gridTemplateColumns: '300px 1fr',
+                    gap: 2,
                     margin: 'auto',
-                    width: 'fit-content',
                 }}
             >
-                <Grid item xs={3}>
+                <Grid>
                     <Typography variant="h6">Фільтри</Typography>
                     <Box>
                         <Typography variant="h6">Мова:</Typography>
@@ -268,7 +270,7 @@ const ProductsCardsList = () => {
                         </Box>
                     </Box>
                 </Grid>
-                <Grid item xs={9}>
+                <Grid>
                     <Box display="flex" marginBottom={2}>
                         <Typography variant="subtitle1" marginRight={1}>
                             Пошук за ключовим словaм:
