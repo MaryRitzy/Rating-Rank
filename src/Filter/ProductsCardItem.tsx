@@ -75,7 +75,7 @@ const ProductsCardItem = ({
                     Мова: {language}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" paragraph>
-                    Ключові слова: {Keywords}
+                    Ключові слова: {Keywords.join(', ')}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" paragraph>
                     Тип мови: {Language_type}
