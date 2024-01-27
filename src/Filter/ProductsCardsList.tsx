@@ -17,21 +17,25 @@ import ProductsCardItem from './ProductsCardItem'
 import SearchIcon from '@mui/icons-material/Search'
 
 const ProductsCardsList = () => {
+    const defaultLanguageTypes = [
+        'Business',
+        'For Kids',
+        'Special Purpose',
+        'General',
+        'Legal',
+        'Teenager',
+        'Medical',
+    ]
+    const defaultCategories = ['Загальний словник', 'Словник ігор', 'Ігри']
+    const defaultLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+    const defaultMedia = ['Відео', 'Аудіо', 'Фото']
     const [filters, setFilters] = useState({
         keywordSearch: '',
         language: 'EN-UA',
-        languageTypes: [
-            'Business',
-            'For Kids',
-            'Special Purpose',
-            'General',
-            'Legal',
-            'Teenager',
-            'Medical',
-        ],
-        categories: ['Загальний словник', 'Словник ігор', 'Ігри'],
-        levels: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'],
-        media: ['Відео', 'Аудіо', 'Фото'],
+        languageTypes: defaultLanguageTypes,
+        categories: defaultCategories,
+        levels: defaultLevels,
+        media: defaultMedia,
         age: [1, 14],
     })
 
@@ -39,17 +43,30 @@ const ProductsCardsList = () => {
         const keywordSearch = filters.keywordSearch
             ? goods.Keywords.includes(filters.keywordSearch.toLowerCase())
             : true
+        const mediaChoice =
+            goods.media.some(
+                (mediaItem) =>
+                    !filters.media.some((checkedFilter) =>
+                        mediaItem.includes(checkedFilter)
+                    )
+            ) || filters.media.length === defaultMedia.length
+
+        const levelsChoice =
+            goods.level.some(
+                (levelItem) =>
+                    !filters.levels.some((checkedFilter) =>
+                        levelItem.includes(checkedFilter)
+                    )
+            ) || filters.levels.length === defaultLevels.length
 
         return (
             keywordSearch &&
-            (filters.categories.includes(goods.category) ||
-                filters.categories.length === 0) &&
-            (filters.languageTypes.includes(goods.Language_type) ||
-                filters.languageTypes.length === 0) &&
-            (filters.levels.some((level) => goods.level.includes(level)) ||
-                filters.levels.length === 0) &&
-            (filters.media.includes(goods.media) ||
-                filters.media.length === 0) &&
+            (!filters.categories.includes(goods.category) ||
+                filters.categories.length === defaultCategories.length) &&
+            (!filters.languageTypes.includes(goods.Language_type) ||
+                filters.languageTypes.length === defaultLanguageTypes.length) &&
+            levelsChoice &&
+            mediaChoice &&
             goods.age >= filters.age[0] &&
             goods.age <= filters.age[1]
         )
@@ -107,9 +124,6 @@ const ProductsCardsList = () => {
                                 key={type}
                                 control={
                                     <Checkbox
-                                        checked={filters.languageTypes.includes(
-                                            type
-                                        )}
                                         onChange={() =>
                                             handleFilterChange(
                                                 'languageTypes',
@@ -148,9 +162,6 @@ const ProductsCardsList = () => {
                                     key={type}
                                     control={
                                         <Checkbox
-                                            checked={filters.categories.includes(
-                                                type
-                                            )}
                                             onChange={() =>
                                                 handleFilterChange(
                                                     'categories',
@@ -189,7 +200,6 @@ const ProductsCardsList = () => {
                                 key={type}
                                 control={
                                     <Checkbox
-                                        checked={filters.levels.includes(type)}
                                         onChange={() =>
                                             handleFilterChange(
                                                 'levels',
@@ -222,7 +232,6 @@ const ProductsCardsList = () => {
                                 key={type}
                                 control={
                                     <Checkbox
-                                        checked={filters.media.includes(type)}
                                         onChange={() =>
                                             handleFilterChange(
                                                 'media',

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material'
 
 type Goods = {
@@ -8,9 +9,9 @@ type Goods = {
     Keywords: string[]
     Language_type: string
     category: string
-    level: string
+    level: string[]
     age: number
-    media: string
+    media: string[]
     price: number
     image: string
     description: string
@@ -84,7 +85,7 @@ const ProductsCardItem = ({
                     Категорія: {category}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" paragraph>
-                    Рівень: {level}
+                    Рівень: {level.join(', ')}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" paragraph>
                     Вік: {age}
@@ -92,9 +93,12 @@ const ProductsCardItem = ({
                 <Typography variant="body2" color="textSecondary" paragraph>
                     Медіа:{' '}
                     <span>
-                        <input type="checkbox" defaultChecked /> Відео{' '}
-                        <input type="checkbox" defaultChecked /> Аудіо{' '}
-                        <input type="checkbox" defaultChecked /> Фото
+                        {media.map((mediaType) => (
+                            <React.Fragment key={mediaType}>
+                                <input type="checkbox" defaultChecked />{' '}
+                                {mediaType}{' '}
+                            </React.Fragment>
+                        ))}
                     </span>
                 </Typography>
             </CardContent>

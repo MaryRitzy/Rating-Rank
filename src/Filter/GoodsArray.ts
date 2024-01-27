@@ -6,9 +6,9 @@ export type Goods = {
     Keywords: string[]
     Language_type:string
     category: string
-    level: string
+    level: string[]
     age: number 
-    media: string
+    media: string[]
     price: number
     image: string
     description: string
@@ -24,9 +24,9 @@ const GoodsArray: Goods[] = [
         Keywords: ['презентації', 'овочі', 'фрукти'],
         Language_type: 'Business',
         category: 'Загальний словник',
-        level: 'A1, A2',
+        level: ['A1', 'A2'],
         age: 12, 
-        media: 'Відео, Аудіо, Фото',
+        media: ['Відео', 'Аудіо', 'Фото'],
         price: 55,
         image:'./image/red_pitahaya.jpeg',
         description: 'Ці запитання та завдання допоможуть учням зрозуміти як правильно…',
@@ -39,9 +39,9 @@ const GoodsArray: Goods[] = [
         Keywords: ['фрукти', 'тварини'],
         Language_type: 'For Kids',
         category: 'Словник ігор',
-        level: 'A1, A2',
+        level: ['A1','A2'],
         age: 5, 
-        media: 'Відео',
+        media: ['Відео'],
         price: 56,
         image:'./image/red_pitahaya.jpeg',
         description: 'Ці запитання та завдання допоможуть учням зрозуміти як правильно…',
@@ -54,9 +54,9 @@ const GoodsArray: Goods[] = [
         Keywords: ['овочі', 'ліс','сад'],
         Language_type: 'Special Purpose',
         category: 'Ігри',
-        level: 'A1, A2',
+        level: ['A1', 'A2'],
         age: 6, 
-        media: 'Фото',
+        media: ['Фото'],
         price: 56,
         image:'./image/red_pitahaya.jpeg',
         description: 'Ці запитання та завдання допоможуть учням зрозуміти як правильно…',
@@ -69,9 +69,9 @@ const GoodsArray: Goods[] = [
         Keywords:  ['презентації', 'ферма', 'тварини'],
         Language_type: 'General',
         category: 'Загальний словник',
-        level: 'A1, A2, B1',
+        level: ['A1', 'A2', 'B1'],
         age: 7, 
-        media: 'Аудіо',
+        media: ['Аудіо'],
         price: 57,
         image:'./image/red_pitahaya.jpeg',
         description: 'Ці запитання та завдання допоможуть учням зрозуміти як правильно…',
@@ -84,9 +84,9 @@ const GoodsArray: Goods[] = [
         Keywords: ['фрукти', 'ферма', 'тварини'],
         Language_type: 'Legal',
         category: 'Словник ігор',
-        level: 'A1, A2, B1',
+        level: ['A1', 'A2', 'B1'],
         age: 12, 
-        media: 'Аудіо',
+        media: ['Аудіо'],
         price: 58,
         image:'./image/red_pitahaya.jpeg',
         description: 'Ці запитання та завдання допоможуть учням зрозуміти як правильно…',
@@ -99,9 +99,9 @@ const GoodsArray: Goods[] = [
         Keywords: ['овочі', 'фрукти'],
         Language_type: 'Teenager',
         category: 'Ігри',
-        level: "C1, C2",
+        level: ["C1", "C2"],
         age: 12, 
-        media: 'Аудіо',
+        media: ['Аудіо'],
         price: 68,
         image:'./image/red_pitahaya.jpeg',
         description: 'Ці запитання та завдання допоможуть учням зрозуміти як правильно…',
@@ -114,9 +114,9 @@ const GoodsArray: Goods[] = [
         Keywords: ['презентації', 'овочі', 'фрукти'],
         Language_type: 'Medical',
         category: 'Загальний словник',
-        level: 'A1, B2',
+        level: ['A1', 'B2'],
         age: 12, 
-        media: 'Аудіо',
+        media: ['Аудіо'],
         price: 60,
         image:'./image/red_pitahaya.jpeg',
         description: 'Ці запитання та завдання допоможуть учням зрозуміти як правильно…',
