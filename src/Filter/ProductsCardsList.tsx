@@ -59,6 +59,8 @@ const ProductsCardsList = () => {
                     )
             ) || filters.levels.length === defaultLevels.length
 
+        const languageChoice = goods.language === filters.language
+
         return (
             keywordSearch &&
             (!filters.categories.includes(goods.category) ||
@@ -67,6 +69,7 @@ const ProductsCardsList = () => {
                 filters.languageTypes.length === defaultLanguageTypes.length) &&
             levelsChoice &&
             mediaChoice &&
+            languageChoice &&
             goods.age >= filters.age[0] &&
             goods.age <= filters.age[1]
         )
@@ -103,8 +106,14 @@ const ProductsCardsList = () => {
                             onChange={(e) =>
                                 handleFilterChange('language', e.target.value)
                             }
+                            sx={{ fontSize: '0.8rem' }}
                         >
-                            <MenuItem value="EN-UA">EN-UA</MenuItem>
+                            <MenuItem sx={{ fontSize: '0.8rem' }} value="EN-UA">
+                                EN-UA
+                            </MenuItem>
+                            <MenuItem sx={{ fontSize: '0.8rem' }} value="EN-JP">
+                                EN-JP
+                            </MenuItem>
                         </Select>
                     </Box>
                     <Box display="flex" flexDirection="column">

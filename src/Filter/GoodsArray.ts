@@ -110,7 +110,7 @@ const GoodsArray: Goods[] = [
         id: 7,
         article: 753633,
         title: 'Презентації',
-        language: 'EN-UA',
+        language: 'EN-JP',
         Keywords: ['презентації', 'овочі', 'фрукти'],
         Language_type: 'Medical',
         category: 'Загальний словник',
