@@ -24,7 +24,7 @@ const TableUsers: React.FC = () => {
         setOrderDirection(isAsc ? 'desc' : 'asc')
         setValueToOrderBy(property)
     }
-    // Ключові слова і вік неправильно сортує
+
     const sortData = (a: PropsData, b: PropsData): number => {
         let valueA: string | number = ''
         let valueB: string | number = ''
@@ -44,19 +44,17 @@ const TableUsers: React.FC = () => {
                 valueB = b[valueToOrderBy] as string
                 break
             case 'age':
+                valueA = parseInt(a[valueToOrderBy][0], 10) as number
+                valueB = parseInt(b[valueToOrderBy][0], 10) as number
+                break
             case 'level':
                 valueA = a[valueToOrderBy][0].split(/-|\s/)[0]
                 valueB = b[valueToOrderBy][0].split(/-|\s/)[0]
                 break
             case 'Keywords':
-                valueA =
-                    a.Keywords && a.Keywords.length > 0
-                        ? a.Keywords[0].split(' ')[0].trim()
-                        : ''
-                valueB =
-                    b.Keywords && b.Keywords.length > 0
-                        ? b.Keywords[0].split(' ')[0].trim()
-                        : ''
+                valueA = a.Keywords[0]
+                valueB = b.Keywords[0]
+
                 break
             case 'video':
             case 'audio':

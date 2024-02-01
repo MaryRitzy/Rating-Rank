@@ -82,7 +82,7 @@ const DataBaseUsers: PropsData[] = [
         age: ['0-12'], 
         level: ['A1-A2'],
         Language_type: 'For Kids',
-        Keywords: ['oвочі', 'ягоди', 'фрукти', 'тварини','ліс'],
+        Keywords: ['овочі', 'ягоди', 'фрукти', 'тварини','ліс'],
         wordsInQuestions: 42,
         numberOfQuestions: 24,
         video: true,
