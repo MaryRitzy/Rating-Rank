@@ -10,6 +10,7 @@ import {
     Checkbox,
     TableSortLabel,
 } from '@mui/material'
+import TablePagination from '@mui/material/TablePagination'
 import DataBaseUsers, { PropsData } from './DataBaseUsers'
 
 type Order = 'asc' | 'desc'
@@ -18,6 +19,19 @@ const TableUsers: React.FC = () => {
     const [orderDirection, setOrderDirection] = useState<Order>('asc')
     const [valueToOrderBy, setValueToOrderBy] =
         useState<keyof PropsData>('number')
+    const [page, setPage] = useState(0)
+    const [rowsPerPage, setRowsPerPage] = useState(10)
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage)
+    }
+
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setRowsPerPage(parseInt(event.target.value, 10))
+        setPage(0)
+    }
 
     const handleRequestSort = (property: keyof PropsData) => {
         const isAsc = valueToOrderBy === property && orderDirection === 'asc'
@@ -141,49 +155,65 @@ const TableUsers: React.FC = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {sortedData.map((user: PropsData) => (
-                        <TableRow key={user.id}>
-                            <TableCell component="th" scope="row">
-                                {user.number}
-                            </TableCell>
-                            <TableCell>{user.name}</TableCell>
-                            <TableCell>
-                                <img
-                                    src={user.rating}
-                                    alt="rating"
-                                    style={{ width: 20, height: 20 }}
-                                />
-                            </TableCell>
-                            <TableCell>{user.lots}</TableCell>
-                            <TableCell>{user.age.join(', ')}</TableCell>
-                            <TableCell>{user.level.join(', ')}</TableCell>
-                            <TableCell>{user.Language_type}</TableCell>
-                            <TableCell>{user.Keywords.join(', ')}</TableCell>
-                            <TableCell>{user.wordsInQuestions}</TableCell>
-                            <TableCell>{user.numberOfQuestions}</TableCell>
-                            <TableCell>
-                                <Checkbox
-                                    checked={user.video}
-                                    disabled={!user.video}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <Checkbox
-                                    checked={user.audio}
-                                    disabled={!user.audio}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <Checkbox
-                                    checked={user.photo}
-                                    disabled={!user.photo}
-                                />
-                            </TableCell>
-                            <TableCell>{user.price}$</TableCell>
-                        </TableRow>
-                    ))}
+                    {sortedData
+                        .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                        )
+                        .map((user: PropsData) => (
+                            <TableRow key={user.id}>
+                                <TableCell component="th" scope="row">
+                                    {user.number}
+                                </TableCell>
+                                <TableCell>{user.name}</TableCell>
+                                <TableCell>
+                                    <img
+                                        src={user.rating}
+                                        alt="rating"
+                                        style={{ width: 20, height: 20 }}
+                                    />
+                                </TableCell>
+                                <TableCell>{user.lots}</TableCell>
+                                <TableCell>{user.age.join(', ')}</TableCell>
+                                <TableCell>{user.level.join(', ')}</TableCell>
+                                <TableCell>{user.Language_type}</TableCell>
+                                <TableCell>
+                                    {user.Keywords.join(', ')}
+                                </TableCell>
+                                <TableCell>{user.wordsInQuestions}</TableCell>
+                                <TableCell>{user.numberOfQuestions}</TableCell>
+                                <TableCell>
+                                    <Checkbox
+                                        checked={user.video}
+                                        disabled={!user.video}
+                                    />
+                                </TableCell>
+                                <TableCell>
+                                    <Checkbox
+                                        checked={user.audio}
+                                        disabled={!user.audio}
+                                    />
+                                </TableCell>
+                                <TableCell>
+                                    <Checkbox
+                                        checked={user.photo}
+                                        disabled={!user.photo}
+                                    />
+                                </TableCell>
+                                <TableCell>{user.price}$</TableCell>
+                            </TableRow>
+                        ))}
                 </TableBody>
             </Table>
+            <TablePagination
+                rowsPerPageOptions={[5, 10, 100]}
+                component="div"
+                count={sortedData.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+            ></TablePagination>
         </TableContainer>
     )
 }

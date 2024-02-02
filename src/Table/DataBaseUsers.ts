@@ -31,7 +31,7 @@ const DataBaseUsers: PropsData[] = [
         wordsInQuestions: 162,
         numberOfQuestions: 1453,
         video: true,
-        audio: false,
+        audio: true,
         photo: true,
         price: 10.65
 
@@ -85,13 +85,87 @@ const DataBaseUsers: PropsData[] = [
         Keywords: ['овочі', 'ягоди', 'фрукти', 'тварини','ліс'],
         wordsInQuestions: 42,
         numberOfQuestions: 24,
-        video: true,
-        audio: true,
+        video: false,
+        audio: false,
         photo: true,
         price: 19.00
 
-    }
+    },
     
+    {
+        id: 5,
+        number: 5,
+        name: 'Anais Herrera',
+        rating: './image/Private.svg',
+        lots: 16,
+        age: ['4-8'], 
+        level: ['A1-A2'],
+        Language_type: 'For Kids',
+        Keywords: ['фрукти', 'ферма', 'ягоди', 'тварини','ліс'],
+        wordsInQuestions: 22,
+        numberOfQuestions: 14,
+        video: true,
+        audio: false,
+        photo: true,
+        price: 16.00
+
+    },
+
+    {
+        id: 6,
+        number: 6,
+        name: 'Otto Owen',
+        rating: './image/Private.svg',
+        lots: 26,
+        age: ['20-90'], 
+        level: ['B1-C2'],
+        Language_type: 'Legal',
+        Keywords: ['купівля','продаж', 'ринок', 'біржа'],
+        wordsInQuestions: 72,
+        numberOfQuestions: 124,
+        video: true,
+        audio: true,
+        photo: false,
+        price: 49.00
+
+        
+    },
+    {
+        id: 7,
+        number: 7,
+        name: 'Dean Davidson',
+        rating: './image/Private.svg',
+        lots: 100,
+        age: ['7-22'], 
+        level: ['A2-B2'],
+        Language_type: 'Teenager',
+        Keywords: ['ягоди', 'овочі', 'ягоди', 'тварини','ліс'],
+        wordsInQuestions: 42,
+        numberOfQuestions: 24,
+        video: true,
+        audio: false,
+        photo: false,
+        price: 12.00
+
+    },
+    {
+        id: 8,
+        number: 8,
+        name: 'Yosef Li',
+        rating: './image/Private.svg',
+        lots: 73,
+        age: ['13-52'], 
+        level: ['B2-C1'],
+        Language_type: 'Medical',
+        Keywords: ['аптека', 'фрукти', 'тварини','овочі', 'ліс'],
+        wordsInQuestions: 542,
+        numberOfQuestions: 37,
+        video: true,
+        audio: false,
+        photo: true,
+        price: 27.00
+
+    }
 ]
 
 
