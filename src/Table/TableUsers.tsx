@@ -121,7 +121,11 @@ const TableUsers: React.FC = () => {
 
     return (
         <TableContainer component={Paper}>
-            <Table aria-label="simple table">
+            <Table
+                sx={{ minWidth: 650 }}
+                size="small"
+                aria-label="a dense table"
+            >
                 <TableHead>
                     <TableRow>
                         {columns.map((column) => (
@@ -132,6 +136,12 @@ const TableUsers: React.FC = () => {
                                         ? orderDirection
                                         : false
                                 }
+                                sx={{
+                                    padding: '2px',
+                                    fontSize: '0.8rem',
+                                    fontWeight: '700',
+                                    textAlign: 'center',
+                                }}
                             >
                                 {column.isSortable ? (
                                     <TableSortLabel
@@ -162,45 +172,129 @@ const TableUsers: React.FC = () => {
                         )
                         .map((user: PropsData) => (
                             <TableRow key={user.id}>
-                                <TableCell component="th" scope="row">
+                                <TableCell
+                                    component="th"
+                                    scope="row"
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.6rem',
+                                        textAlign: 'center',
+                                    }}
+                                >
                                     {user.number}
                                 </TableCell>
-                                <TableCell>{user.name}</TableCell>
-                                <TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.7rem',
+                                        fontWeight: '600',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {user.name}
+                                </TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        textAlign: 'center',
+                                    }}
+                                >
                                     <img
                                         src={user.rating}
                                         alt="rating"
                                         style={{ width: 20, height: 20 }}
                                     />
                                 </TableCell>
-                                <TableCell>{user.lots}</TableCell>
-                                <TableCell>{user.age.join(', ')}</TableCell>
-                                <TableCell>{user.level.join(', ')}</TableCell>
-                                <TableCell>{user.Language_type}</TableCell>
-                                <TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.6rem',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {user.lots}
+                                </TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.6rem',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {user.age.join(', ')}
+                                </TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.6rem',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {user.level.join(', ')}
+                                </TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.6rem',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {user.Language_type}
+                                </TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.6rem',
+                                        textAlign: 'center',
+                                    }}
+                                >
                                     {user.Keywords.join(', ')}
                                 </TableCell>
-                                <TableCell>{user.wordsInQuestions}</TableCell>
-                                <TableCell>{user.numberOfQuestions}</TableCell>
-                                <TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.6rem',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {user.wordsInQuestions}
+                                </TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.6rem',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {user.numberOfQuestions}
+                                </TableCell>
+                                <TableCell sx={{ padding: '2px' }}>
                                     <Checkbox
                                         checked={user.video}
                                         disabled={!user.video}
                                     />
                                 </TableCell>
-                                <TableCell>
+                                <TableCell sx={{ padding: '2px' }}>
                                     <Checkbox
                                         checked={user.audio}
                                         disabled={!user.audio}
                                     />
                                 </TableCell>
-                                <TableCell>
+                                <TableCell sx={{ padding: '2px' }}>
                                     <Checkbox
                                         checked={user.photo}
                                         disabled={!user.photo}
                                     />
                                 </TableCell>
-                                <TableCell>{user.price}$</TableCell>
+                                <TableCell
+                                    sx={{
+                                        padding: '2px',
+                                        fontSize: '0.6rem',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {user.price}$
+                                </TableCell>
                             </TableRow>
                         ))}
                 </TableBody>
