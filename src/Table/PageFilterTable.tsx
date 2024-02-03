@@ -7,8 +7,10 @@ import {
     ListItemText,
     Collapse,
     Box,
+    IconButton,
+    Tooltip,
 } from '@mui/material'
-import { ExpandLess, ExpandMore } from '@mui/icons-material'
+import { ExpandLess, ExpandMore, Info as InfoIcon } from '@mui/icons-material'
 
 type Props = {}
 const PageFilterTable = (props: Props) => {
@@ -51,6 +53,11 @@ const PageFilterTable = (props: Props) => {
                             <ListItemButton onClick={handleClickGeneral}>
                                 <ListItemText primary="Загальний словник" />
                                 {openGeneral ? <ExpandLess /> : <ExpandMore />}
+                                <Tooltip title="Information about general dictionary">
+                                    <IconButton>
+                                        <InfoIcon />
+                                    </IconButton>
+                                </Tooltip>
                             </ListItemButton>
                             <Collapse
                                 in={openGeneral}
@@ -82,6 +89,11 @@ const PageFilterTable = (props: Props) => {
                             <ListItemButton onClick={handleClickGames}>
                                 <ListItemText primary="Ігри" />
                                 {openGames ? <ExpandLess /> : <ExpandMore />}
+                                <Tooltip title="Information about games">
+                                    <IconButton>
+                                        <InfoIcon />
+                                    </IconButton>
+                                </Tooltip>
                             </ListItemButton>
                             <Collapse
                                 in={openGames}
