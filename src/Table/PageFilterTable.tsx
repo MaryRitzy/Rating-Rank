@@ -9,6 +9,7 @@ import {
     Box,
     IconButton,
     Tooltip,
+    Typography,
 } from '@mui/material'
 import { ExpandLess, ExpandMore, Info as InfoIcon } from '@mui/icons-material'
 
@@ -16,6 +17,10 @@ type Props = {}
 const PageFilterTable = (props: Props) => {
     const [openGeneral, setOpenGeneral] = useState(false)
     const [openGames, setOpenGames] = useState(false)
+
+    const placedCount = 21
+    const reviewCount = 3
+    const deletedCount = 5
 
     const handleClickGeneral = () => {
         setOpenGeneral(!openGeneral)
@@ -74,18 +79,44 @@ const PageFilterTable = (props: Props) => {
                                 </List>
                             </Collapse>
 
-                            <ListItemButton>
+                            <ListItemButton
+                                sx={{ justifyContent: 'space-between' }}
+                            >
                                 <ListItemText primary="Розміщені" />
+                                <Typography
+                                    variant="subtitle1"
+                                    component="span"
+                                    sx={{ fontWeight: 'bold' }}
+                                >
+                                    {placedCount}
+                                </Typography>
                             </ListItemButton>
 
-                            <ListItemButton>
+                            <ListItemButton
+                                sx={{ justifyContent: 'space-between' }}
+                            >
                                 <ListItemText primary="Очікують перегляду" />
+                                <Typography
+                                    variant="subtitle1"
+                                    component="span"
+                                    sx={{ fontWeight: 'bold' }}
+                                >
+                                    {reviewCount}
+                                </Typography>
                             </ListItemButton>
 
-                            <ListItemButton>
+                            <ListItemButton
+                                sx={{ justifyContent: 'space-between' }}
+                            >
                                 <ListItemText primary="Видалені" />
+                                <Typography
+                                    variant="subtitle1"
+                                    component="span"
+                                    sx={{ fontWeight: 'bold' }}
+                                >
+                                    {deletedCount}
+                                </Typography>
                             </ListItemButton>
-
                             <ListItemButton onClick={handleClickGames}>
                                 <ListItemText primary="Ігри" />
                                 {openGames ? <ExpandLess /> : <ExpandMore />}
