@@ -10,8 +10,10 @@ import {
     IconButton,
     Tooltip,
     Typography,
+    SvgIcon,
 } from '@mui/material'
 import { ExpandLess, ExpandMore, Info as InfoIcon } from '@mui/icons-material'
+import InfoRedIcon from './img_icons/icon_InfoRed.svg'
 
 type Props = {}
 const PageFilterTable = (props: Props) => {
@@ -60,7 +62,14 @@ const PageFilterTable = (props: Props) => {
                                 {openGeneral ? <ExpandLess /> : <ExpandMore />}
                                 <Tooltip title="Information about general dictionary">
                                     <IconButton>
-                                        <InfoIcon />
+                                        <img
+                                            src={InfoRedIcon}
+                                            alt="info"
+                                            style={{
+                                                width: '20px',
+                                                height: '20px',
+                                            }}
+                                        />
                                     </IconButton>
                                 </Tooltip>
                             </ListItemButton>
@@ -122,7 +131,14 @@ const PageFilterTable = (props: Props) => {
                                 {openGames ? <ExpandLess /> : <ExpandMore />}
                                 <Tooltip title="Information about games">
                                     <IconButton>
-                                        <InfoIcon />
+                                        <img
+                                            src={InfoRedIcon}
+                                            alt="info"
+                                            style={{
+                                                width: '20px',
+                                                height: '20px',
+                                            }}
+                                        />
                                     </IconButton>
                                 </Tooltip>
                             </ListItemButton>
