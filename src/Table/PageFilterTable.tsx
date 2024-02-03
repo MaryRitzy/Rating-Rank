@@ -1,8 +1,28 @@
-import { Grid, Typography, Select, MenuItem } from '@mui/material'
+import { useState } from 'react'
 import TableUsers from './TableUsers'
+import {
+    Grid,
+    List,
+    ListItemButton,
+    ListItemText,
+    Collapse,
+    Box,
+} from '@mui/material'
+import { ExpandLess, ExpandMore } from '@mui/icons-material'
 
 type Props = {}
 const PageFilterTable = (props: Props) => {
+    const [openGeneral, setOpenGeneral] = useState(false)
+    const [openGames, setOpenGames] = useState(false)
+
+    const handleClickGeneral = () => {
+        setOpenGeneral(!openGeneral)
+    }
+
+    const handleClickGames = () => {
+        setOpenGames(!openGames)
+    }
+
     return (
         <>
             <Grid
@@ -10,7 +30,6 @@ const PageFilterTable = (props: Props) => {
                 maxWidth="lg"
                 spacing={2}
                 sx={{
-                    //maxWidth: 900,
                     display: 'grid',
                     gridTemplateColumns: '200px 1fr',
                     gap: 1,
@@ -18,28 +37,68 @@ const PageFilterTable = (props: Props) => {
                 }}
             >
                 <Grid>
-                    <Typography variant="subtitle2">
-                        Загальний словник
-                    </Typography>
-                    <Typography variant="subtitle2">
-                        Словник ігор
-                        <Select sx={{ fontSize: '0.8rem' }}>
-                            <MenuItem value="EN-UA" sx={{ fontSize: '0.8rem' }}>
-                                EN-UA
-                            </MenuItem>
-                        </Select>
-                    </Typography>
-                    <Typography variant="subtitle2">Розміщені 21</Typography>
-                    <Typography variant="subtitle2">
-                        Очікують перегляду 3
-                    </Typography>
-                    <Typography variant="subtitle2">Видалені 5</Typography>
-                    <Typography variant="subtitle2">
-                        Ігри
-                        <Select>
-                            <MenuItem value="EN-UA">EN-UA</MenuItem>
-                        </Select>
-                    </Typography>
+                    <Box
+                        sx={{
+                            width: '100%',
+                            maxWidth: 200,
+                            bgcolor: 'background.paper',
+                        }}
+                    >
+                        <List
+                            component="nav"
+                            aria-labelledby="nested-list-subheader"
+                        >
+                            <ListItemButton onClick={handleClickGeneral}>
+                                <ListItemText primary="Загальний словник" />
+                                {openGeneral ? <ExpandLess /> : <ExpandMore />}
+                            </ListItemButton>
+                            <Collapse
+                                in={openGeneral}
+                                timeout="auto"
+                                unmountOnExit
+                            >
+                                <List component="div" disablePadding>
+                                    <ListItemButton sx={{ pl: 4 }}>
+                                        <ListItemText primary="General" />
+                                    </ListItemButton>
+                                    <ListItemButton sx={{ pl: 4 }}>
+                                        <ListItemText primary="Medical" />
+                                    </ListItemButton>
+                                </List>
+                            </Collapse>
+
+                            <ListItemButton>
+                                <ListItemText primary="Розміщені" />
+                            </ListItemButton>
+
+                            <ListItemButton>
+                                <ListItemText primary="Очікують перегляду" />
+                            </ListItemButton>
+
+                            <ListItemButton>
+                                <ListItemText primary="Видалені" />
+                            </ListItemButton>
+
+                            <ListItemButton onClick={handleClickGames}>
+                                <ListItemText primary="Ігри" />
+                                {openGames ? <ExpandLess /> : <ExpandMore />}
+                            </ListItemButton>
+                            <Collapse
+                                in={openGames}
+                                timeout="auto"
+                                unmountOnExit
+                            >
+                                <List component="div" disablePadding>
+                                    <ListItemButton sx={{ pl: 4 }}>
+                                        <ListItemText primary="For Kids" />
+                                    </ListItemButton>
+                                    <ListItemButton sx={{ pl: 4 }}>
+                                        <ListItemText primary="Teenager" />
+                                    </ListItemButton>
+                                </List>
+                            </Collapse>
+                        </List>
+                    </Box>
                 </Grid>
                 <Grid>
                     <TableUsers />
